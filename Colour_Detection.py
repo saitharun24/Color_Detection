@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-
+# function to detect red colour in your video
 def detect_red(hsv_frame):
     low_red = np.array([161, 155, 84])
     high_red = np.array([179, 255, 255])
@@ -9,7 +9,7 @@ def detect_red(hsv_frame):
     red = cv2.bitwise_and(frame, frame, mask=red_mask)
     return red
 
-
+# function to detect blue colour in your video
 def detect_blue(hsv_frame):
     low_blue = np.array(([94, 80, 2]))
     high_blue = np.array([126, 255, 255])
@@ -17,7 +17,7 @@ def detect_blue(hsv_frame):
     blue = cv2.bitwise_and(frame, frame, mask=blue_mask)
     return blue
 
-
+# function to detect green colour in your video
 def detect_green(hsv_frame):
     low_green = np.array(([94, 80, 2]))
     high_green = np.array([126, 255, 255])
@@ -25,6 +25,7 @@ def detect_green(hsv_frame):
     green = cv2.bitwise_and(frame, frame, mask=green_mask)
     return green
 
+# function to detect RGB colours in your video
 def detect_rgb(hsv_frame):
     low = np.array([0, 42, 0])
     high = np.array([179, 255, 255])
@@ -32,7 +33,8 @@ def detect_rgb(hsv_frame):
     result = cv2.bitwise_and(frame, frame, mask=mask)
     return result
 
-
+# main function
+# used to start the video capture in your device usually the webcam
 cap = cv2.VideoCapture(0)
 font = cv2.FONT_HERSHEY_SIMPLEX
 while True:
@@ -47,8 +49,9 @@ while True:
     cv2.imshow("Blue Color", blue)
     cv2.imshow("Green Color", green)
     cv2.imshow("Result Color", result)
-
+# wait until the 'Esc' key is pressed
     key = cv2.waitKey(1)
     if key == 27:
         break
+# used to release the locked webcam
 cap.release()
